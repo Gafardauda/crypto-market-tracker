@@ -5,6 +5,7 @@ from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
+import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.ticker import FuncFormatter
@@ -62,7 +63,8 @@ def _colors(coins: list[dict]) -> dict[str, str]:
     return {c["id"]: SERIES_COLORS[i % len(SERIES_COLORS)] for i, c in enumerate(coins)}
 
 
-def performance_chart(prices: pd.DataFrame, coins: list[dict], path: Path, days: int = 365) -> None:
+def performance_chart(prices: pd.DataFrame, coins: list[dict], path: Path, days: int = 365,
+                      title: str | None = None) -> None:
     """Every coin rebased to 100, so a $80,000 coin and a $1 coin share one axis."""
     recent = indexed(prices.tail(days))
     colors = _colors(coins)
@@ -77,10 +79,13 @@ def performance_chart(prices: pd.DataFrame, coins: list[dict], path: Path, days:
             xytext=(6, 0), textcoords="offset points", va="center", color=INK_SECONDARY, fontsize=9,
         )
 
-    ax.set_title(f"Growth of $100 invested {len(recent)} days ago", pad=24)
+    ax.set_title(title or f"Growth of $100 invested {len(recent)} days ago", pad=24)
     ax.text(0, 1.02, "Each coin rebased to 100 on the first day. Above 100 = gained value.",
             transform=ax.transAxes, color=INK_SECONDARY, fontsize=9)
     ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:.0f}"))
+    if len(recent) <= 14:  # short windows read better as "Mon 13" than "10-13"
+        ax.xaxis.set_major_locator(mdates.DayLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%a %d"))
     ax.legend(loc="lower left", ncols=len(coins))
     ax.margins(x=0.01)
     fig.savefig(path)

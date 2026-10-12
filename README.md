@@ -41,6 +41,7 @@ GitHub Actions (daily, 01:30 UTC)
   └─ commits the updated data and charts
 ```
 
+- **Weekly insight report:** every Monday at 06:00 WAT, a second workflow ([`weekly-post.yml`](.github/workflows/weekly-post.yml)) summarizes the week (best and worst performer, biggest single-day move, calmest coin), writes a post draft to [`posts/latest.md`](posts/latest.md) with a 7-day chart, and opens a GitHub issue as a reminder to share it.
 - **Incremental and self-healing:** each run fetches only the days that are missing, so a skipped day is filled in on the next run.
 - **Consistent snapshots:** every row is the market state at 00:00 UTC, so days are directly comparable.
 - **Tested:** the metric calculations and data merging are covered by `pytest`, and the tests run before every update.

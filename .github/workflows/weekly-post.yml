@@ -1,0 +1,55 @@
+name: Weekly LinkedIn post
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # Mondays 05:00 UTC = 06:00 West Africa Time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: market-update # never run at the same time as the daily update
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write post draft and chart
+        id: post
+        run: python -m tracker.weekly
+
+      - name: Commit draft
+        id: commit
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git add posts charts/weekly.png
+          git diff --cached --quiet || git commit -m "post: weekly LinkedIn draft $(date -u +%F)"
+          git pull --rebase
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Open reminder issue
+        run: |
+          gh label create linkedin-post --color 0A66C2 --description "Weekly LinkedIn post draft" --force
+          for n in $(gh issue list --label linkedin-post --state open --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "Replaced by this week's post."
+          done
+          python -m tracker.weekly --issue-body "${{ steps.commit.outputs.sha }}" > issue.md
+          gh issue create --title "${{ steps.post.outputs.title }}" --body-file issue.md \
+            --label linkedin-post --assignee "${{ github.repository_owner }}"
