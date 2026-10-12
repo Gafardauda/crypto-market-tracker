@@ -1,0 +1,9 @@
+{
+  "vs_currency": "usd",
+  "backfill_days": 365,
+  "coins": [
+    {"id": "bitcoin", "symbol": "BTC", "name": "Bitcoin"},
+    {"id": "ethereum", "symbol": "ETH", "name": "Ethereum"},
+    {"id": "jumptoken", "symbol": "JMPT", "name": "JumpToken"}
+  ]
+}
