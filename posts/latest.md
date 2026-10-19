@@ -1,13 +1,13 @@
-📈 My crypto tracker: week ending Sun 11 Oct
+📈 My crypto tracker: week ending Sun 18 Oct
 
-A red week across the board. BTC held up best (-3.2%).
+A red week across the board. BTC held up best (-2.0%).
 
-🔴 BTC: -3.2% ($83,691)
-🔴 JMPT: -4.2% ($0.5562)
-🔴 ETH: -7.0% ($2,535)
+🔴 BTC: -2.0% ($82,020)
+🔴 JMPT: -3.8% ($0.5348)
+🔴 ETH: -5.0% ($2,408)
 
-⚡ Biggest single-day move: ETH -4.6% on Wednesday.
-📊 Calmest coin over the last 30 days: JMPT (21% annualized volatility).
+⚡ Biggest single-day move: ETH -3.5% on Monday.
+📊 Calmest coin over the last 30 days: JMPT (20% annualized volatility).
 
 ✍️ [Add one sentence of your own here. What surprised you this week?]
 
