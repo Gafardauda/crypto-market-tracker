@@ -9,13 +9,13 @@ The project compares two of the largest cryptocurrencies with a small-cap token:
 ## Latest stats
 
 <!-- STATS:START -->
-_Snapshot as of **2026-10-21 00:00 UTC**. Updated automatically every day._
+_Snapshot as of **2026-10-22 00:00 UTC**. Updated automatically every day._
 
 | Coin | Price | 1 day | 7 days | 30 days | 1 year | Volatility (30d) | Market cap |
 |:--|--:|--:|--:|--:|--:|--:|--:|
-| **BTC** Bitcoin | $82,944 | ▲ +1.3% | ▼ -0.2% | ▲ +2.2% | ▼ -25.0% | 32% | $1.67T |
-| **ETH** Ethereum | $2,446 | ▲ +1.7% | ▼ -2.0% | ▼ -7.5% | ▼ -38.5% | 37% | $298.84B |
-| **JMPT** JumpToken | $0.5416 | ▲ +0.9% | ▼ -0.8% | ▼ -6.7% | ▼ -41.6% | 21% | $7.99M |
+| **BTC** Bitcoin | $84,082 | ▲ +1.4% | ▲ +3.0% | ▼ -2.9% | ▼ -22.4% | 23% | $1.69T |
+| **ETH** Ethereum | $2,473 | ▲ +1.1% | ▲ +2.2% | ▼ -10.9% | ▼ -36.0% | 32% | $302.04B |
+| **JMPT** JumpToken | $0.5416 | ▼ -0.0% | ▲ +0.2% | ▼ -8.6% | ▼ -43.8% | 19% | $7.99M |
 <!-- STATS:END -->
 
 ## Charts
